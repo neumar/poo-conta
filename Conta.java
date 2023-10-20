@@ -2,16 +2,17 @@ public class Conta {
     
     private double saldo;
     private double limite;
+    private Cliente titular;
 
-    public Conta () {
-        this(0, -500);
+    public Conta (Cliente c) {
+        this(0, -500, c);
     }
 
-    public Conta (double s) {
-        this(s, -500);
+    public Conta (double s, Cliente c) {
+        this(s, -500, c);
     }
 
-    public Conta (double s, double l) {
+    public Conta (double s, double l, Cliente c) {
         if(s >= 0) {
             this.saldo = s;
         } else {
@@ -22,6 +23,7 @@ public class Conta {
         } else {
             this.limite = -500;
         }
+        this.titular = c;
     }
 
     public double getSaldo() {
@@ -30,6 +32,10 @@ public class Conta {
 
     public double getLimite() {
         return limite;
+    }
+
+    public String getNomeTitular () {
+        return this.titular.getNome();
     }
 
     public void setLimite(double l) {

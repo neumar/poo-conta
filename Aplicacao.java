@@ -8,22 +8,30 @@ public class Aplicacao {
 
         int opcao = 0;
 
-        Conta c = null;
+        Conta conta1 = null;
         
         while (opcao != 5) {
 
             opcao = exibirMenu(entrada);
 
             if (opcao == 1) {
-                c = new Conta();
+                System.out.println("Informe nome do cliente: ");
+                String nome = entrada.nextLine();
+                System.out.println("Informe CPF do cliente: ");
+                String cpf = entrada.nextLine();
+                Cliente cliente1;
+                cliente1 = new Cliente(nome, cpf);
+                conta1 = new Conta(cliente1);
+
             } else if (opcao == 2) {
                 //mostrar saldo
-                System.out.println("Saldo: " + c.getSaldo());
+                System.out.println("Cliente: " + conta1.getNomeTitular());
+                System.out.println("Saldo: " + conta1.getSaldo());
             } else if (opcao == 3) {
                 //depositar
                 System.out.println("Informe valor deposito: ");
                 double v = Double.parseDouble(entrada.nextLine());
-                if(c.depositar(v)) {
+                if(conta1.depositar(v)) {
                     System.out.println("Deposito realiado com sucesso.");
                 } else {
                     System.out.println("Erro.");
@@ -32,7 +40,7 @@ public class Aplicacao {
                 //sacar
                 System.out.println("Informe valor saque: ");
                 double v = Double.parseDouble(entrada.nextLine());
-                if(c.sacar(v)) {
+                if(conta1.sacar(v)) {
                     System.out.println("Saque realiado com sucesso.");
                 } else {
                     System.out.println("Erro.");
