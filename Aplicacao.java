@@ -21,7 +21,7 @@ public class Aplicacao {
                 String cpf = entrada.nextLine();
                 Cliente cliente1;
                 cliente1 = new Cliente(nome, cpf);
-                conta1 = new Conta(cliente1);
+                conta1 = new Conta(0, 500, cliente1);
 
             } else if (opcao == 2) {
                 //mostrar saldo
