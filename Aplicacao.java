@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Aplicacao {
@@ -8,7 +9,7 @@ public class Aplicacao {
 
         int opcao = 0;
 
-        Conta conta1 = null;
+        ArrayList<Conta> contas = new ArrayList<Conta>();
         
         while (opcao != 5) {
 
@@ -21,12 +22,27 @@ public class Aplicacao {
                 String cpf = entrada.nextLine();
                 Cliente cliente1;
                 cliente1 = new Cliente(nome, cpf);
-                conta1 = new Conta(0, 500, cliente1);
+                Conta c = new Conta(0, -500, cliente1);
+                contas.add(c);
 
             } else if (opcao == 2) {
                 //mostrar saldo
-                System.out.println("Cliente: " + conta1.getNomeTitular());
-                System.out.println("Saldo: " + conta1.getSaldo());
+                
+                System.out.println("Informe numero da conta: ");
+                int numero = Integer.parseInt(entrada.nextLine());
+
+                Conta c = buscarConta(contas, numero);
+
+                if (c != null) {
+                    System.out.println("Cliente: " + c.getNomeTitular());
+                    System.out.println("Numero: " + c.getNumero());
+                    System.out.println("Saldo: " + c.getSaldo());
+                } else {
+                    System.out.println("Erro: Numero de conta não encontrado");
+                }
+
+                
+               
             } else if (opcao == 3) {
                 //depositar
                 System.out.println("Informe valor deposito: ");
@@ -49,6 +65,16 @@ public class Aplicacao {
         }
     }
 
+
+    private static Conta buscarConta(ArrayList<Conta> l, int num) {
+
+        for(Conta c : l) {
+            if (c.getNumero() == num) {
+                return c;
+            }
+        }
+        return null;
+    }
 
     private static int exibirMenu(Scanner entrada) {
 
