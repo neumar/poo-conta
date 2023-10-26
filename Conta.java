@@ -64,4 +64,16 @@ public class Conta {
         }
         return false;
     }
+
+    public boolean transferir(double v, Conta destino){
+        
+        if (v >= 0){
+            if ((this.saldo - v) >= this.limite) {
+                this.sacar(v);
+                destino.depositar(v);
+                return true;
+            }
+        }
+        return false;
+    }
 }
